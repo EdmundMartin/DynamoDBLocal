@@ -59,6 +59,11 @@ func (dl *DynamoLocal) PutItem(w http.ResponseWriter, req *http.Request) {
 		bucket := tx.Bucket([]byte(putItemReq.TableName))
 		return bucket.Put(putKey, buffer.Bytes())
 	})
-	fmt.Println(err)
+	if err != nil {
+		// TODO check actual Dynamo behaviour in case of internal error
+		JSONResponse(w, types.ErrorBadRequest{Message: "bad request"}, http.StatusBadRequest)
+		return
+	}
 
+	JSONResponse(w, types.PutItemResponse{ConsumedCapacity: types.NewDefaultWriteConsumedCapacity(putItemReq.TableName)}, http.StatusOK)
 }

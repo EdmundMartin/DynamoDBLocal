@@ -1,10 +1,3 @@
-## DynamoDBLocal
-
-Embedded local DynamoDB for Golang, allow for unit testing against a real DynamoDB
-like interface without Docker/Java runtime. Work in progress.
-
-## Example Usage
-```go
 package main
 
 import (
@@ -70,11 +63,6 @@ func main() {
 			WriteCapacityUnits: aws.Int64(10),
 		},
 	})
+
 	fmt.Println(res)
 }
-```
-
-## Implemented So Far
-* CreateTable
-* ListTables
-* PutItem (partial coverage)
