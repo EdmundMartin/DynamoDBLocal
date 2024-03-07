@@ -76,4 +76,12 @@ func main() {
 		},
 		TableName: aws.String("Hello"),
 	})
+
+	conn.GetItem(context.Background(), &dynamodb.GetItemInput{
+		TableName: aws.String("Hello"),
+		Key: map[string]types.AttributeValue{
+			"year":  &types.AttributeValueMemberN{Value: "1991"},
+			"title": &types.AttributeValueMemberS{Value: "EdmundMartin"},
+		},
+	})
 }

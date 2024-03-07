@@ -52,7 +52,7 @@ func NewDynamoLocal(filepath string, keySep []byte) (*DynamoLocal, error) {
 	dl.handlers["DynamoDB_20120810.CreateTable"] = dl.CreateTable
 	dl.handlers["DynamoDB_20120810.ListTables"] = dl.ListTables
 	dl.handlers["DynamoDB_20120810.PutItem"] = dl.PutItem
-	// DynamoDB_20120810.ListTables - ListTables
+	// dl.handlers["DynamoDB_20120810.GetItem"]
 	dl.initTables()
 	return &dl, nil
 }

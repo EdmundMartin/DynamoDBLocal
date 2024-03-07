@@ -14,6 +14,7 @@ func (dl *DynamoLocal) CreateTable(w http.ResponseWriter, req *http.Request) {
 	var result types.CreateTablePayload
 
 	err := json.NewDecoder(req.Body).Decode(&result)
+	defer req.Body.Close()
 	if err != nil {
 		JSONResponse(w, types.ErrorBadRequest{Message: "bad request"}, http.StatusBadRequest)
 		return
